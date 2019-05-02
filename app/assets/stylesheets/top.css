@@ -1,4 +1,4 @@
-* {
+/** {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 /*a {
   text-decoration: none;
 }*/
-.clearfix::after {
+/*.clearfix::after {
   content: "";
   display: block;
   clear: both;
@@ -16,7 +16,7 @@
 /*header, nav, h2, .main-visual, footer {
   font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
 }*/
-header {
+/*header {
   position: relative;
   width: 90%;
   padding: 15px 0;
@@ -25,13 +25,13 @@ header {
 }
 header .headline {
   font-size: 32px;
-}
+}*/
 /*.social {
   position: absolute;
   top: 22px;
-  right: 22px;
+  right: 22px;*/
 }
-.social i {
+/*.social i {
   display: inline-block;
   margin-left: 20px;
 }
@@ -41,7 +41,7 @@ header .headline {
   margin: 0 auto;
 }
 .nav-list-item {
-  list-style: none;   
+  list-style: none;
   display: inline-block;
   margin: 0 20px;
 }
@@ -176,7 +176,7 @@ header .headline {
 }
 .instagram-box:nth-child(6) {
   background-image: url(img/road.jpg);
-}*/
+}
 
 .videocase{
 	position: center;
@@ -217,4 +217,4 @@ footer {
 }
 .footer-text {
   color: #fff;
-}
+}*/
