@@ -1,0 +1,10 @@
+<h1>Uploader#form</h1>
+
+<% @upload = UploadFile.new %>
+<%= form_for @upload, :url => {:action => :upload} do |f| %>
+	<%= f.label :name, "name" %>
+	<%= f.text_field :name %>
+	<%= f.label :file %>
+	<%= f.text_field :file %>
+	<%= f.submit "Upload" %>
+<% end %>
