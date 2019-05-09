@@ -17,5 +17,12 @@
   <% end %>
 <% end %>
 
+<%= render 'follow_form' if user_signed_in? %>
+<section class="stats">
+
+  <%= render 'users/stats' %>
+</section>
+
+
 
 <%# link_to "ユーザー一覧に戻る", all_path %>
