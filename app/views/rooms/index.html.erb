@@ -1,1 +1,5 @@
-index.html.erb
+<%  @anotherEntries.each do |another| %>
+	<%= link_to room_path(another.room.id) do%>
+		<%= another.user.name %>とのDM<br>
+	<% end %>
+<% end %>
