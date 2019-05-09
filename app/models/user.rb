@@ -6,4 +6,31 @@ class User < ApplicationRecord
 
          has_many :entries, dependent: :destroy
          has_many :messages, dependent: :destroy
+
+         # フォローしている（能動的関係上でフォローする側[relationship.rbでのbelongs_to :follower, class_name: "User"と対]）
+         has_many :active_relationships,class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+         # フォローをされる　
+         # has_many :active_relationships,class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+
+          # フォローされている（受動的関係）
+         has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+
+
+         # フォローしているユーザーの集団を取り出す。
+         has_many :following, through: :active_relationships, source: :following
+         # フォロワーを取り出す
+         has_many :followers, through: :passive_relationships, source: :follower
+
+
+         def follow(other_user)
+         	active_relationships.create(following_id: other_user.id)
+         end
+
+         def unfollow(other_user)
+         	active_relationships.find_by(following_id: other_user.id).destroy
+         end
+
+         def following?(other_user)
+         	following.include?(other_user)
+         end
 end

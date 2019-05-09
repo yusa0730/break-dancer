@@ -14,6 +14,14 @@ Rails.application.routes.draw do
   get 'all' => 'users#all'
   resources :messages, :only => [:create]
   resources :rooms, :only => [:create, :show,:index]
-  resources :users
+
   resources :places
+  resources :relationships
+
+  resources :users do
+  	member do
+  		get :following, :followers
+  	end
+  end
+
 end
