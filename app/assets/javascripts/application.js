@@ -54,7 +54,7 @@ var markerData = [ // マーカーを立てる場所名・緯度・経度
  }
 ];
 
-	function initMap(){
+function initMap(){
 		var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
 		map = new google.maps.Map(document.getElementById('sample'),{
 			center: mapLatLng,
@@ -78,11 +78,45 @@ var markerData = [ // マーカーを立てる場所名・緯度・経度
 
 	// マーカーにクリックイベントを追加
 	function markerEvent(i) {
-	    marker[i].addListener('click', function() { // マーカーをクリックしたとき
+	    marker[i].addListener('mouseover', function() { // マーカーに触れた時
 	      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
-	  });
+	  	});
+	    marker[i].addListener('mouseout', function() { // マーカーから離れた時
+	      infoWindow[i].close();
+	  	});
 	}
 }
+
+function getMyPlace() {
+  var output = document.getElementById("result");
+  if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
+    output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
+    return;
+  }
+  function success(position) {
+    var latitude  = position.coords.latitude;//緯度
+    var longitude = position.coords.longitude;//経度
+    output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
+    // 位置情報
+    var latlng = new google.maps.LatLng( latitude , longitude ) ;
+    
+
+    // マーカーの新規出力
+    new google.maps.Marker({
+        map: map ,
+        position: latlng ,
+    });
+  };
+  function error() {
+    //エラーの場合
+    output.innerHTML = "座標位置を取得できません";
+  };
+  navigator.geolocation.getCurrentPosition(success, error);//成功と失敗を判断
+}
+
+
+
+
 
 $(function(){
 
@@ -92,6 +126,7 @@ $(function(){
 		return false;
 	});
 });
+
 
 
 
