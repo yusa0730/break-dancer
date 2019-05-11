@@ -9,12 +9,28 @@
 	      <i class="fab fa-twitter-square"></i>
 	      <i class="fab fa-instagram"></i>
 	  </div>
+
+    <div id="sp-menu">
+      <h1 class="lecomend"> おすすめ練習動画紹介</h1>
+      <ul>
+        <li><a href="#">初心者の方</a></li>
+        <li><a href="#">中級者の方</a></li>
+        <li><a href="#">上級者の方</a></li>
+      </ul>
+    </div>
+
+    <div id="hm-icon">
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
   </header>
   <nav>
     <ul class="nav-list">
-      <li class="nav-list-item">
-        <%= link_to "動画を投稿する", new_article_path %>
-      </li>
+      <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
       <li class="nav-list-item"><%= link_to "場所を探す", places_path %></li>
       <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
     </ul>

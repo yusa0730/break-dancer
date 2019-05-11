@@ -1,12 +1,22 @@
 class RelationshipsController < ApplicationController
-	def create
+
+    def create
       Relationship.create(create_params)
-      redirect_to controller: 'users', action: 'index'
+      @user = User.find(params[:following_id])
+      respond_to do |format|
+	      format.html { redirect_to @user }
+	      format.js
+      end
     end
     def destroy
       relationship =  Relationship.find(params[:id])
+      @user = Relationship.find(params[:id]).following
       relationship.destroy
-      redirect_to controller: 'users', action: 'index'
+      respond_to do |format|
+	      format.html { redirect_to @user }
+	      format.js 
+      end
+
     end
     private
     def create_params
