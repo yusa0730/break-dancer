@@ -84,3 +84,17 @@ var markerData = [ // マーカーを立てる場所名・緯度・経度
 	}
 }
 
+$(function(){
+
+	$('.menu-trigger').on('click', function(){
+		$(this).toggleClass('active');
+		$('#sp-menu').fadeToggle();
+		return false;
+	});
+});
+
+
+
+
+
+

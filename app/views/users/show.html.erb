@@ -17,9 +17,10 @@
   <% end %>
 <% end %>
 
-<%= render 'follow_form' if user_signed_in? %>
+<section>
+  <%= render 'follow_form' if user_signed_in? %>
+</section>
 <section class="stats">
-
   <%= render 'users/stats' %>
 </section>
 

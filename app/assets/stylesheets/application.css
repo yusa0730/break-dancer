@@ -37,8 +37,23 @@ header {
 }
 header .headline {
   font-size: 32px;
-}
+  position:relative;
 
+    margin:0 -1px;
+    font:bold 30px/1.6 Arial, Helvetica, sans-serif;
+    text-align:center;
+    color:#333;
+    background:#f0e800;
+    -webkit-transform: rotate(-3deg) skew(-3deg);
+    -moz-transform: rotate(-3deg) skew(-3deg);
+    -o-transform: rotate(-3deg) skew(-3deg);
+    -ms-transform: rotate(-3deg) skew(-3deg);
+    transform: rotate(-3deg) skew(-3deg);
+    text-shadow:1px 1px 0 rgba(255,255,255,1);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2),
+                30px 0 0 0 #f0e800,
+                -30px 0 0 0 #f0e800;
+}
 
 .social {
   position: absolute;
@@ -61,6 +76,91 @@ header .headline {
 }
 
 
+#hm-icon{
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+}
+
+.menu-trigger,
+.menu-trigger span{
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
+}
+ 
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+}
+ 
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+ 
+.menu-trigger span:nth-of-type(2) {
+  top: 20px;
+}
+ 
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
+}
+ 
+.menu-trigger.active span:nth-of-type(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #fff;
+}
+ 
+.menu-trigger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+ 
+.menu-trigger.active span:nth-of-type(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+　background-color: #fff;
+}
+
+.lecomend{
+  padding-top: 20px;
+}
+
+#sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+}
+
+#sp-menu li{
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  padding-top: 150px;
+}
+
+#sp-menu a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 
 
 
@@ -68,8 +168,9 @@ header .headline {
 .videocase{
 	position: center;
 	width:100%;
-	height: 800px;
-	margin-left: 100px;
+	height: 100%;
+  /*height: 800px;*/
+	margin-left: 50px;
 }
 
 .login{
@@ -120,6 +221,14 @@ main {
   width: 100%;
   height: 400px;
 }
+
+
+
+
+
+
+
+
 
 
 
