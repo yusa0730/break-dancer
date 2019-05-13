@@ -20,6 +20,7 @@
 
 
 var map;
+var newInfoWindow;
 var marker = [];
 var infoWindow = [];
 var markerData = [ // マーカーを立てる場所名・緯度・経度
@@ -99,12 +100,34 @@ function getMyPlace() {
     output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
     // 位置情報
     var latlng = new google.maps.LatLng( latitude , longitude ) ;
-    
-
+    map.setCenter(latlng);
+    var template = [
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="40px" height="40px">',
+        '<path d="M39,19c0,11-15,25-15,25S9,30,9,19a15,15,0,0,1,30,0Z" fill="{{ color1 }}"/>',
+        '<circle cx="24" cy="19" r="8" fill="{{ color2 }}"/>',
+        '<text x="24" y="19" font-size="20" text-anchor="middle" stroke-width="0.5" fill="blue"></text>',
+    '</svg>'].join('\n');
+    var svg = template.replace('{{ color1 }}','#F27398').replace('{{ color2 }}', '#58BE89');
+    var icon = {
+        url: 'data:image/svg+xml;charset=UTF-8;base64,' + btoa(svg)
+    };
     // マーカーの新規出力
-    new google.maps.Marker({
-        map: map ,
-        position: latlng ,
+    newMarker = new google.maps.Marker({
+        map: map,
+        position: latlng,
+        icon: icon
+    });
+
+
+    newInfoWindow = new google.maps.InfoWindow({
+    	content: '<div class="sample">現在地</div>'
+    });
+    
+    newMarker.addListener('mouseover', function(){
+    	newInfoWindow.open(map,newMarker);
+    });
+    newMarker.addListener('mouseout', function(){
+    	newInfoWindow.close()
     });
   };
   function error() {
@@ -113,6 +136,10 @@ function getMyPlace() {
   };
   navigator.geolocation.getCurrentPosition(success, error);//成功と失敗を判断
 }
+
+
+
+
 
 
 
