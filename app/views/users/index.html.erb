@@ -1,5 +1,4 @@
 <header>
-
 	<div id="contents">
 	    <h1 class="headline">
 	      <a href="">Breakers</a>
@@ -13,10 +12,11 @@
     <div id="sp-menu">
       <h1 class="lecomend"> おすすめ練習動画紹介</h1>
       <ul>
-        <li><a href="#">初心者の方</a></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <li><a href="#">中級者の方</a></li>
         <li><a href="#">上級者の方</a></li>
       </ul>
+      </div>
     </div>
 
     <div id="hm-icon">
@@ -27,16 +27,18 @@
       </a>
     </div>
 
-  </header>
+
   <nav>
     <ul class="nav-list">
       <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
-      <li class="nav-list-item"><%= link_to "場所を探す", places_path %></li>
+      <li class="nav-list-item" data-turbolinks="false"><%= link_to "場所を探す", places_path %></li>
       <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
+      <li class="nav-list-item"><%= link_to "おすすめ動画", all_path %></li>
     </ul>
   </nav>
 
-
+</header>
+  <div class="douga">
      <iframe width="430" height="315" src="https://www.youtube.com/embed/TLjsXOj5omA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
      <iframe width="500" height="315" src="https://www.youtube.com/embed/4q25_-WXgoI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -54,3 +56,4 @@
      <iframe width="500" height="315" src="https://www.youtube.com/embed/1fDnS6EVyn4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
      <iframe width="430" height="315" src="https://www.youtube.com/embed/jS_EvnweWK8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
