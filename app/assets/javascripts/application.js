@@ -16,15 +16,13 @@
 //= require turbolinks
 //= require_tree .
 
-
-
-
 var map;
 var newInfoWindow;
+// var MarkerArray = new google.maps.MVCArray();
 var marker = [];
 var infoWindow = [];
-var markerData = [ // マーカーを立てる場所名・緯度・経度
-  {
+var tokyoMarkerData = [
+	{
         name: '新宿コズミックセンター',
         lat: 35.705148, 
         lng: 139.708166
@@ -40,54 +38,44 @@ var markerData = [ // マーカーを立てる場所名・緯度・経度
         name: '池袋駅メトロポリタン',
         lat: 35.729288,
         lng: 139.710001
- }, {
-        name: '溝の口駅',
-        lat: 35.599905,
-        lng: 139.610459
- }, {
-        name: '中野ゼロホール',
-        lat: 35.704507,
-        lng: 139.671707
- }, {
+ }
+
+];
+
+
+var saitamaMarkerData = [
+	{
         name: '浦和駅（浦和駅西口地下道）',
         lat: 35.859037,
         lng: 139.657145
  }
+
 ];
 
+var kanagawaMarkerData = [
+	{
+         name: '溝の口駅',
+        lat: 35.599905,
+        lng: 139.610459
+ }
+
+];
+
+
+
+
+
+
 function initMap(){
-		var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
+		var mapLatLng = new google.maps.LatLng({lat: 35.680350, lng: 139.768356}); // 緯度経度のデータ作成
 		map = new google.maps.Map(document.getElementById('sample'),{
 			center: mapLatLng,
 			zoom: 10
 		});
-
-		// マーカー毎の処理
-	 for (var i = 0; i < markerData.length; i++) {
-	        markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}); // 緯度経度のデータ作成
-	        marker[i] = new google.maps.Marker({ // マーカーの追加
-	         position: markerLatLng, // マーカーを立てる位置を指定
-	            map: map // マーカーを立てる地図を指定
-	       });
-	 
-	     infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-	         content: '<div class="sample">' + markerData[i]['name'] + '</div>' // 吹き出しに表示する内容
-	       });
-	 
-	     markerEvent(i); // マーカーにクリックイベントを追加
-	 }
-
-	// マーカーにクリックイベントを追加
-	function markerEvent(i) {
-	    marker[i].addListener('mouseover', function() { // マーカーに触れた時
-	      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
-	  	});
-	    marker[i].addListener('mouseout', function() { // マーカーから離れた時
-	      infoWindow[i].close();
-	  	});
-	}
 }
 
+
+// 現在地の取得
 function getMyPlace() {
   var output = document.getElementById("result");
   if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
@@ -138,16 +126,115 @@ function getMyPlace() {
 }
 
 
+// マーカーをリセットするメソッド
+function deleteMarkers(){
+		for (var i = 0; i < marker.length; i++) {
+			marker[i].setMap(null);
+		}
+}
 
 
 
+$(function() {
+  //セレクトボックスが切り替わったら発動
+  $('select').change(function() {
+  	console.log("test");
+    //選択したvalue値を変数に格納
+    var val = $(this).val();
+    if(val == "tokyo"){
+    	if (marker.length > 0) {
+    		deleteMarkers();
+    	}
+    	for (var i = 0; i < tokyoMarkerData.length; i++) {
+	        markerLatLng = new google.maps.LatLng({lat: tokyoMarkerData[i]['lat'], lng: tokyoMarkerData[i]['lng']}); // 緯度経度のデータ作成
+	        marker[i] = new google.maps.Marker({ // マーカーの追加
+	         position: markerLatLng, // マーカーを立てる位置を指定
+	            map: map // マーカーを立てる地図を指定
+	    });
+	        // MarkerArray.push(marker);
+	 
+	     infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+	         content: '<div class="sample">' + tokyoMarkerData[i]['name'] + '</div>' // 吹き出しに表示する内容
+	       });
+	 
+	     markerEvent(i); // マーカーにクリックイベントを追加
+	    }
+
+	// マーカーにクリックイベントを追加
+		function markerEvent(i) {
+		    marker[i].addListener('mouseover', function() { // マーカーに触れた時
+		      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+		  	});
+		    marker[i].addListener('mouseout', function() { // マーカーから離れた時
+		      infoWindow[i].close();
+		  	});
+		}
+    }else if(val == "saitama"){
+    	if (marker.length > 0) {
+    		deleteMarkers();
+    	}
+    	for (var s = 0; s < saitamaMarkerData.length; s++) {
+	        markerLatLng = new google.maps.LatLng({lat: saitamaMarkerData[s]['lat'], lng: saitamaMarkerData[s]['lng']}); // 緯度経度のデータ作成
+	        marker[s] = new google.maps.Marker({ // マーカーの追加
+	         position: markerLatLng, // マーカーを立てる位置を指定
+	            map: map // マーカーを立てる地図を指定
+	       });
+	 
+	     infoWindow[s] = new google.maps.InfoWindow({ // 吹き出しの追加
+	         content: '<div class="sample">' + saitamaMarkerData[s]['name'] + '</div>' // 吹き出しに表示する内容
+	       });
+	 
+	     markerEvent(s); // マーカーにクリックイベントを追加
+	    }
+
+	    function markerEvent(s) {
+		    marker[s].addListener('mouseover', function() { // マーカーに触れた時
+		      infoWindow[s].open(map, marker[s]); // 吹き出しの表示
+		  	});
+		    marker[s].addListener('mouseout', function() { // マーカーから離れた時
+		      infoWindow[s].close();
+		  	});
+		}
+	}else if(val == "kanagawa"){
+    		if (marker.length > 0) {
+	    		deleteMarkers();
+    		}
+    	for (var k = 0; k < kanagawaMarkerData.length; k++) {
+	        markerLatLng = new google.maps.LatLng({lat: kanagawaMarkerData[k]['lat'], lng: kanagawaMarkerData[k]['lng']}); // 緯度経度のデータ作成
+	        marker[k] = new google.maps.Marker({ // マーカーの追加
+	         position: markerLatLng, // マーカーを立てる位置を指定
+	            map: map // マーカーを立てる地図を指定
+	       });
+
+	 
+	     infoWindow[k] = new google.maps.InfoWindow({ // 吹き出しの追加
+	         content: '<div class="sample">' + kanagawaMarkerData[k]['name'] + '</div>' // 吹き出しに表示する内容
+	       });
+	 
+	     markerEvent(k); // マーカーにクリックイベントを追加
+	    }
+
+	    function markerEvent(k) {
+		    marker[k].addListener('mouseover', function() { // マーカーに触れた時
+		      infoWindow[k].open(map, marker[k]); // 吹き出しの表示
+		  	});
+		    marker[k].addListener('mouseout', function() { // マーカーから離れた時
+		      infoWindow[k].close();
+		  	});
+		}
+    }else if (val == "no") {
+    	if (marker.length > 0) {
+	    		deleteMarkers();
+    	}
+    }
+  });
+});
 
 
 
-
+// ハンバーガーメニュー用js
 $(function(){
-
-	$('.menu-trigger').on('click', function(){
+	$(document).on('click', '.menu-trigger', function(){
 		$(this).toggleClass('active');
 		$('#sp-menu').fadeToggle();
 		return false;

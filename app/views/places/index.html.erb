@@ -1,42 +1,39 @@
 
 <header>
-
 	<div id="contents">
 	    <h1 class="headline">
 	      <a href="/">Breakers</a>
 	    </h1>
-	    <div class="social">
-	      <i class="fab fa-facebook-square"></i>
-	      <i class="fab fa-twitter-square"></i>
-	      <i class="fab fa-instagram"></i>
-	  </div>
-  </header>
+	</div>
+ </header>
   <nav>
     <ul class="nav-list">
       <li class="nav-list-item">
         <%= link_to "動画を投稿する", new_article_path %>
       </li>
       <li class="nav-list-item"><%= link_to "場所を探す", places_path %></li>
-      <li class="nav-list-item"><%= link_to "つながる", "" %></li>
+      <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
     </ul>
   </nav>
 
-<!-- <main class="clearfix">
-	<div class="place">
-		<div>
-			
-		</div>
+<div class="mapbox">
+	<select id="prefecture" name="col1">
+	  <option value="no">未選択</option>
+	  <option value="tokyo">東京</option>
+	  <option value="saitama">埼玉</option>
+	  <option value="kanagawa">神奈川</option>
+	</select>
 
-	</div>
- -->
-<p><button onclick="getMyPlace()">現在位置を取得</button></p>
-<div id="result"></div>
-<div id="map"></div>
+	<p><button onclick="getMyPlace()">現在位置を取得</button></p>
+	<div id="result"></div>
+	<div id="map"></div>
 
 
-<div id ="sample"></div>
+	<div id ="sample"></div>
+</div>
 
-<!-- <script src="./sample.js"></script> -->
+
+<!-- <script src="assets/javascripts/place.js"></script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAd_8m8kd2dp3E9VtDkJ4nDRugvNJj7JZU&callback=initMap" async></script>
 
 
