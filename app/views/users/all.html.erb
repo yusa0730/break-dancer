@@ -1,7 +1,23 @@
+<header>
+  <div id="contents">
+      <h1 class="headline">
+        <a href="/">Breakers</a>
+      </h1>
 
 
 
-</div>
+
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
+      <li class="nav-list-item" data-turbolinks="false"><%= link_to "場所を探す", places_path %></li>
+      <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
+      <li class="nav-list-item"><%= link_to "おすすめ動画", all_path %></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="all">
       <h1>Users</h1>
       <div class="col-lg-9">
         <table class="table table-striped">
@@ -29,5 +45,4 @@
           </tbody>   
         </table>
     </div>
-  </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_071301) do
+ActiveRecord::Schema.define(version: 2019_05_15_064451) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -28,12 +28,20 @@ ActiveRecord::Schema.define(version: 2019_05_13_071301) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
     t.text "context"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "likes_count"
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
