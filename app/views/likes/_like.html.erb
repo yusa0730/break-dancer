@@ -1,0 +1,28 @@
+<% if user_signed_in? %>
+	<% if message.like_user(current_user.id) %>
+		<%= button_to message_like_path(message_id: message.id, id: message.likes[0].id), method: :delete, id: "likes-button", remote: true do %>
+			<div class="vertical_like">
+        		<i class="material-icons red-text">favorite</i>
+        		<span class="red-text">
+        			<%= message.likes_count %>
+				</span>
+			</div>
+		<% end %>
+	<% else %>
+		<%= button_to message_likes_path(message), id: "likes-button", remote: true do %>
+			<div class="vertical_like">
+        		<i class="material-icons red-text">favorite</i>
+        		<span class="red-text">
+        			<%= message.likes_count %>
+				</span>
+			</div>
+		<% end %>
+	<% end %>
+<% else %>
+	<div class="vertical_like">
+      <i class="material-icons grey-text text-darken-2">favorite_border</i>
+      <span class="grey-text text-darken-2">
+        <%= message.likes_count %>
+      </span>
+    </div>
+<% end %>

@@ -9,12 +9,18 @@
 <% if @messages.present? %>
   <% @messages.each do |m| %>
     <strong><%= m.context %></strong>
+
     <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
-    <hr>
+    <div id="likes_button_<%= m.id %>">
+       <% p "message:"%> <% p m %>
+        <%= render partial: 'likes/like', locals: { message: m, likes: @likes} %>
+    </div>
+
   <% end %>
 <% else %>
-  <h3 class="text-center">メッセージはまだありません</h3>
+    <h3 class="text-center">メッセージはまだありません</h3>
 <% end %>
+<hr>
 
 <%= form_for @message do |f| %>
   <%= f.text_field :context, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
@@ -24,3 +30,5 @@
 <% end %>
 
 <%= link_to "ユーザー一覧に戻る", users_path %>
+
+

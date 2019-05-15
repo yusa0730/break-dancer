@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   get 'uploader/index'
   get 'uploader/form'
 
@@ -12,7 +14,11 @@ Rails.application.routes.draw do
   # root 'articles#index'
   get 'top' => 'users#top'
   get 'all' => 'users#all'
-  resources :messages, :only => [:create]
+  resources :messages, :only => [:create] do
+    resources :likes, only: [:create, :destroy]
+  end
+
+
   resources :rooms, :only => [:create, :show,:index]
 
   resources :places
