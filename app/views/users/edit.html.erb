@@ -9,7 +9,7 @@
                       <div class="col-md-4 col-md-offset-4">
                           <div class="form-user style-1 rounded has-shadow-1"> 
                             <div class="form-header text-center">
-                                <h2 class="form-header-title">プロフィール編集</h2>
+                                <h2 class="form-header-title">Profile</h2>
                             </div>
                             <div class="form-body">
 
@@ -22,7 +22,7 @@
 
 								<div class="form-group has-icon">
 									<div class="user-edit-image">
-										<%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+										<%= attachment_image_tag current_user, :profile_image, :fill, 90, 90, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
 									</div>
 									<label>ProfileImage</label>
 									<%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form"%>

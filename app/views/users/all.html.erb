@@ -13,35 +13,44 @@
       </nav>
   </div>
 </header>
-
-<div class="all">
-      <h1>Users</h1>
-      <div class="col-lg-9">
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>image</th>
-                <th>name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each do |user| %>
-                <tr>
-                  <td>
-                        <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %>
-                  </td>
-                  <td>
-                     <div class="profile-container">
-                        <h3 class="profile-name"><%= user.name %></h3>
-                     </div>
-                  </td>
-                  <td>
-                    <%= link_to "show", user_path(user.id) %>
-                  </td>
-                </tr>
-               <% end %>
-            </tbody>
-        </table>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="all">
+          <h1>Users</h1>
+          <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-left">image</th>
+                    <th class="text-center">name</th>
+                    <th class="text-center">email</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td>
+                            <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %>
+                      </td>
+                      <td>
+                         <div class="profile-container">
+                            <h3 class="profile-name"><%= user.name %></h3>
+                         </div>
+                      </td>
+                      <td>
+                         <div class="profile-container">
+                            <h3 class="profile-name"><%= user.email %></h3>
+                         </div>
+                      </td>
+                      <td>
+                        <%= link_to "show", user_path(user.id) %>
+                      </td>
+                    </tr>
+                   <% end %>
+                </tbody>
+            </table>
+          </div>
+     </div>
+  </div>
 </div>

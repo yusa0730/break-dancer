@@ -1,5 +1,28 @@
-<%  @anotherEntries.each do |another| %>
-	<%= link_to room_path(another.room.id) do%>
-		<%= another.user.name %>とのDM<br>
-	<% end %>
-<% end %>
+<header>
+  <div id="contents">
+      <h1 class="headline">
+        <a href="/">Breakers</a>
+      </h1>
+
+      <nav>
+        <ul class="nav-list">
+          <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
+          <li class="nav-list-item" data-turbolinks="false"><%= link_to "場所を探す", places_path %></li>
+          <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
+        </ul>
+      </nav>
+  </div>
+</header>
+
+
+<div class="dm_history">
+      <h1>ダイレクトメッセージの履歴</h1>
+            <h3><% @anotherEntries.each do |another| %>
+					<%= link_to room_path(another.room.id) do%>
+						<%= another.user.name %>さんとのDM<br>
+					<% end %>
+				<% end %>
+			</h3>
+</div>
+
+
