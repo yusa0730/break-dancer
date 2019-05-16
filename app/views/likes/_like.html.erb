@@ -2,16 +2,17 @@
 	<% if message.like_user(current_user.id) %>
 		<%= button_to message_like_path(message_id: message.id, id: message.likes[0].id), method: :delete, id: "likes-button", remote: true do %>
 			<div class="vertical_like">
-        		<i class="material-icons red-text">favorite</i>
+        		<i class="fa fa-thumbs-o-up">favorite</i>
         		<span class="red-text">
         			<%= message.likes_count %>
+        			<small>by <strong><a href="/users/<%= current_user.id %>"><%= current_user.email %>さん</a></strong></small>
 				</span>
 			</div>
 		<% end %>
 	<% else %>
 		<%= button_to message_likes_path(message), id: "likes-button", remote: true do %>
 			<div class="vertical_like">
-        		<i class="material-icons red-text">favorite</i>
+        		<i class="fa fa-thumbs-o-up">favorite</i>
         		<span class="red-text">
         			<%= message.likes_count %>
 				</span>
