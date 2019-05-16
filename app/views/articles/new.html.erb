@@ -1,5 +1,47 @@
-<h1>New Article</h1>
+<header>
+	<div id="contents">
+	    <h1 class="headline">
+	      <a href="/">Breakers</a>
+	    </h1>
 
-<%= render 'form', article: @article %>
 
-<%= link_to 'Back', articles_path %>
+    <div id="sp-menu">
+      <h1 class="lecomend"> おすすめ練習動画紹介</h1>
+      <ul>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "マイページ編集", edit_user_path(current_user) %></li>
+
+      </ul>
+    </div>
+  </div>
+
+    <div id="hm-icon">
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
+      <li class="nav-list-item" data-turbolinks="false"><%= link_to "場所を探す", places_path %></li>
+      <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
+    </ul>
+  </nav>
+
+</header>
+
+
+
+<div class="post_article">
+
+	<h1>New Article</h1>
+
+	<%= render 'form', article: @article %>
+
+	<%= link_to 'Back', articles_path %>
+
+</div>

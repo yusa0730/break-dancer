@@ -1,32 +1,50 @@
-<h1>ユーザー詳細</h1>
+<header>
+  <div id="contents">
+      <h1 class="headline">
+        <a href="/">Breakers</a>
+      </h1>
 
- <%# attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg") %>
-<h2><%= @user.email %></h2>
+      <nav>
+        <ul class="nav-list">
+          <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
+          <li class="nav-list-item" data-turbolinks="false"><%= link_to "場所を探す", places_path %></li>
+          <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
+        </ul>
+      </nav>
+  </div>
+</header>
 
 
-<% if @user.id == current_user.id %>
-<%= link_to "自分のチャット一覧", rooms_path%>
-<%= link_to "プロフィール編集", edit_user_path(@user) %>
-<% else %>
-  <% if @isRoom == true %>
-    <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
-  <% else %>
-    <%= form_for @room do |f| %>
-      <%= fields_for @entry do |e| %>
-        <%= e.hidden_field :user_id, :value=> @user.id %>
+<div class="usershow">
+    <h1>ユーザー詳細</h1>
+
+     <%# attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg") %>
+    <%= @user.email %>
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+
+    <% if @user.id == current_user.id %>
+      <%= link_to "自分のチャット一覧", rooms_path %>
+      <%= link_to "プロフィール編集", edit_user_path(@user) %>
+    <% else %>
+      <% if @isRoom == true %>
+        <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, :value=> @user.id %>
+          <% end %>
+          <%= f.submit "チャットを始める" %>
+        <% end %>
       <% end %>
-      <%= f.submit "チャットを始める" %>
     <% end %>
-  <% end %>
-<% end %>
 
-<section>
-  <%= render 'follow_form' if user_signed_in? %>
-</section>
-<section class="stats">
-  <%= render 'users/stats' %>
-</section>
+    <section>
+      <%= render 'follow_form' if user_signed_in? %>
+    </section>
+    <section class="stats">
+      <%= render 'users/stats' %>
+    </section>
 
-
+</div>
 
 <%# link_to "ユーザー一覧に戻る", all_path %>

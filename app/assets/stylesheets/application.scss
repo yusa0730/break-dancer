@@ -242,7 +242,7 @@ main {
 
 
 .mapbox{
-  margin-top: 100px;
+  padding-top: 10%;
 }
 
 
@@ -311,7 +311,7 @@ nav a {
   color: inherit;
   padding: 1rem;
 }
-h2 { 
+h2 {
   font-family: Century Schoolbook, Century Schoolbook L, Georgia, serif;
   font-size: 8vmin;
   text-align: center;
@@ -327,8 +327,35 @@ h2 {
   padding-top: 5%;
   margin: 0 auto;
   text-align: center;
+  display: block;
 }
 
 .all h1{
   color: white;
 }
+
+.post_article{
+  padding-top: 5%;
+}
+
+.post_article h1{
+  color: white;
+}
+
+.usershow{
+  padding-top: 6%;
+}
+
+.usershow h1{
+  color:white;
+}
+
+.dmbox{
+  padding-top: 7%;
+  text-align:center;
+}
+
+.dmbox h1{
+  color: white;
+}
+
