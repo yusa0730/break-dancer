@@ -54,7 +54,7 @@ var saitamaMarkerData = [
 
 var kanagawaMarkerData = [
 	{
-         name: '溝の口駅',
+        name: '溝の口駅',
         lat: 35.599905,
         lng: 139.610459
  }
@@ -65,7 +65,7 @@ var kanagawaMarkerData = [
 
 
 
-
+// mapを表示するメソッド
 function initMap(){
 		var mapLatLng = new google.maps.LatLng({lat: 35.680350, lng: 139.768356}); // 緯度経度のデータ作成
 		map = new google.maps.Map(document.getElementById('sample'),{
@@ -206,7 +206,6 @@ $(function() {
 	            map: map // マーカーを立てる地図を指定
 	       });
 
-	 
 	     infoWindow[k] = new google.maps.InfoWindow({ // 吹き出しの追加
 	         content: '<div class="sample">' + kanagawaMarkerData[k]['name'] + '</div>' // 吹き出しに表示する内容
 	       });
