@@ -50,7 +50,8 @@
           <%= fields_for @entry do |e| %>
             <%= e.hidden_field :user_id, :value=> @user.id %>
           <% end %>
-          <%= f.submit "チャットを始める" %>
+          <!-- <p class="btn btn-default col-xs-1"><a href="/rooms/<%= @roomId %>">チャットへ</a> -->
+          <p class="btn btn-default col-xs-0.1"><%= f.submit "チャットを始める" %></p>
         <% end %>
       <% end %>
     <% end %>
