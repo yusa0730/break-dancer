@@ -4,9 +4,11 @@ class VideoUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-
+  include CarrierWave::Video
   # Choose what kind of storage to use for this uploader:
   storage :file
+  process encode_video: [:mp4, resolution: "600x600"]
+
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -42,21 +44,20 @@ class VideoUploader < CarrierWave::Uploader::Base
   end
   
   def screenshot
-
-  tmpfile = File.join(File.dirname(current_path), "tmpfile")
+    tmpfile = File.join(File.dirname(current_path), "tmpfile")
  
      File.rename(current_path, tmpfile)
-      p tmpfile
       # FFMPEGと(tmpfile)どっちがないのか。
      # the ffprobe binary could not be found in /var/lib/gems/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin):
      movie = FFMPEG::Movie.new(tmpfile)
      movie.screenshot(current_path + ".jpg", {resolution: '512x312' }, preserve_aspect_ratio: :width)
      File.rename(current_path + ".jpg", current_path)
      File.delete(tmpfile)
-   end
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
+
    def extension_white_list
     %w(jpg jpeg gif png MOV wmv)
    end

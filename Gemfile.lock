@@ -79,6 +79,9 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    carrierwave-video (0.6.0)
+      carrierwave
+      streamio-ffmpeg
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
@@ -271,6 +274,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave
+  carrierwave-video
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
