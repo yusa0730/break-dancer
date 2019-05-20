@@ -7,9 +7,8 @@
 
 <p>
   <strong>Video:</strong>
-  <%= link_to @article.video_url.to_s do %>
-  	<%= image_tag(@article.video_url(:screenshot).to_s, id: "video", :alt => "screenshot") %>
-  <% end %>
+
+  	<%= video_tag(@article.video_url,controls: true, autobuffer: true, id: "video", :alt => "screenshot") %>
 </p>
 
 
