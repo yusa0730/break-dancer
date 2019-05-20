@@ -44,15 +44,13 @@
        <% end %>
     <% else %>
       <% if @isRoom == true %>
-        <p class="btn btn-default col-xs-1"><a href="/rooms/<%= @roomId %>">チャットへ</a>
+        <a class="btn btn-default col-xs-1" href="/rooms/<%= @roomId %>">チャットへ</a>
       <% else %>
         <%= form_for @room do |f| %>
           <%= fields_for @entry do |e| %>
             <%= e.hidden_field :user_id, :value=> @user.id %>
           <% end %>
-          <!-- <p class="btn btn-default col-xs-1"><a href="/rooms/<%= @roomId %>">チャットへ</a> -->
-            <button type="button" class="btn btn-primary btn-lg"><%= f.submit "チャットを始める" %></button>
-          <p class="btn btn-default col-xs-0.1"><%= f.submit "チャットを始める" %></p>
+          <%= f.submit "チャットを始める",class: "btn btn-default col-xs-1" %>
         <% end %>
       <% end %>
     <% end %>
@@ -67,5 +65,3 @@
     <video src="/assets/videos/videoplayback.mp4" muted autoplay loop></video>
 </div>
 
-
-<%# link_to "ユーザー一覧に戻る", all_path %>
