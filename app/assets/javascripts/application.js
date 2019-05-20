@@ -152,7 +152,7 @@ function getMyPlace() {
             if(markerLatLng != 0){
                 // 現在地から最寄りマーカーの距離を表示
                 $('#output').fadeIn();
-                $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+                $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
             }
     }
 
@@ -256,7 +256,7 @@ $(function() {
         if(latlng != 0){
             // 現在地から最寄りマーカーの距離を表示
             $('#output').fadeIn();
-            $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+            $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
         }
 	// マーカーにクリックイベントを追加
 		function markerEvent(i) {
@@ -295,15 +295,15 @@ $(function() {
 
             if(latlng != 0){
             // 現在地から最寄りマーカーの距離を表示
-            $('#output').fadeIn();
-            $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+                $('#output').fadeIn();
+                $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
             }
 
 	        infoWindow[s] = new google.maps.InfoWindow({ // 吹き出しの追加
-	          content: '<div class="sample">' + saitamaMarkerData[s]['name'] + '</div>' // 吹き出しに表示する内容
+	            content: '<div class="sample">' + saitamaMarkerData[s]['name'] + '</div>' // 吹き出しに表示する内容
 	        });
 	 
-	         markerEvent(s); // マーカーにクリックイベントを追加
+	        markerEvent(s); // マーカーにクリックイベントを追加
 	    }
 
 	    function markerEvent(s) {
@@ -342,7 +342,7 @@ $(function() {
             if(latlng != 0){
             // 現在地から最寄りマーカーの距離を表示
             $('#output').fadeIn();
-            $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+            $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
             }
 
     	        infoWindow[k] = new google.maps.InfoWindow({ // 吹き出しの追加

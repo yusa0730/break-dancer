@@ -17,7 +17,7 @@
 <div class="dmbox">
     <h1>ダイレクトメッセージ</h1>
 
-    <h4>参加者</h4>
+    <h4 class="textcolor">参加者</h4>
     <% @entries.each do |e| %>
       <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
     <% end %>
@@ -25,7 +25,7 @@
     <hr>
     <% if @messages.present? %>
       <% @messages.each do |m| %>
-        <strong><%= m.context %></strong>
+        <strong id="comment"><%= m.context %></strong>
 
         <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
         
@@ -37,7 +37,7 @@
 
       <% end %>
     <% else %>
-        <h3 class="text-center">メッセージはまだありません</h3>
+        <h3 class="textcolor">メッセージはまだありません</h3>
     <% end %>
     <hr>
 
@@ -48,8 +48,12 @@
       <%= f.submit "投稿する" %>
     <% end %>
 
-    <%= link_to "ユーザー一覧に戻る", all_path %>
+    <p class="textcolor"><%= link_to "ユーザー一覧に戻る", all_path %></p>
 
 </div>
 
+
+<div class="videocase">
+    <video src="/assets/videos/videoplayback6.mp4" muted autoplay loop></video>
+</div>
 

@@ -19,10 +19,14 @@
       <h1>ダイレクトメッセージの履歴</h1>
             <h3><% @anotherEntries.each do |another| %>
 					<%= link_to room_path(another.room.id) do%>
-						<%= another.user.name %>さんとのDM<br>
+						<p class="textcolor"><%= another.user.name %>さんとのDM<br></p>
 					<% end %>
 				<% end %>
 			</h3>
 </div>
 
+
+<div class="videocase">
+    <video src="/assets/videos/videoplayback5.mp4" muted autoplay loop></video>
+</div>
 
