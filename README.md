@@ -1,9 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Name
+Breakers
 
-Things you may want to cover:
+Breakersを使ってできること
+・動画の投稿
+・Googlemapでオススメの練習場所を知ることができる
+・他のユーザーをフォローできる。
+・他のユーザーとダイレクトメッセージでやりとりできる。
+
 
 * Ruby version
 
