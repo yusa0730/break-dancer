@@ -51,6 +51,7 @@
             <%= e.hidden_field :user_id, :value=> @user.id %>
           <% end %>
           <!-- <p class="btn btn-default col-xs-1"><a href="/rooms/<%= @roomId %>">チャットへ</a> -->
+            <button type="button" class="btn btn-primary btn-lg"><%= f.submit "チャットを始める" %></button>
           <p class="btn btn-default col-xs-0.1"><%= f.submit "チャットを始める" %></p>
         <% end %>
       <% end %>
@@ -62,6 +63,9 @@
 
 </div>
 
+<div class="videocase">
+    <video src="/assets/videos/videoplayback.mp4" muted autoplay loop></video>
+</div>
 
 
 <%# link_to "ユーザー一覧に戻る", all_path %>

@@ -348,6 +348,8 @@ h2 {
 
 .usershow{
   padding-top: 6%;
+
+  z-index: 2; /*必ず必要*/
 }
 
 .usershow h1{
@@ -379,3 +381,18 @@ h2 {
 .userinfo{
   color:white;
 }
+
+.videocase{
+ position: fixed;
+ right: 0;
+ bottom: 0;
+ min-width: 100%;
+ min-height: 100%;
+ width: auto;
+ height: auto;
+ z-index: -100;
+ background: url('poster.jpg') no-repeat;
+ background-size: cover;
+}
+
+
