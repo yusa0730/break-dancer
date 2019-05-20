@@ -15,11 +15,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-// var result;
+
+var result_name;
+var result;
 var map;
-var latlng;
+var latlng = 0;
+var markerLatLng = 0;
 var newInfoWindow;
 var marker = [];
+var val;
 var infoWindow = [];
 var tokyoMarkerData = [
 	{
@@ -76,6 +80,7 @@ function initMap(){
 
 // 現在地の取得
 function getMyPlace() {
+    console.log(val)
   var output = document.getElementById("result");
   if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
     output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
@@ -87,6 +92,71 @@ function getMyPlace() {
     output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
     // 位置情報
     latlng = new google.maps.LatLng( latitude , longitude ) ;
+
+    if(markerLatLng != 0){
+        console.log(tokyoMarkerData);
+        // var val = $('select').val();
+        if(val === "tokyo"){
+             console.log("tokyo")
+            for (var z = 0; z < tokyoMarkerData.length; z++) {
+                markerLatLng = new google.maps.LatLng({lat: tokyoMarkerData[z]['lat'], lng: tokyoMarkerData[z]['lng']});
+                     console.log(tokyoMarkerData);
+                     var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                     var distance = Math.round(tmp_distance/1000)
+                     console.log(markerLatLng);
+                     tmp_result = distance
+
+                     // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                         if(  tmp_result < result  || z == 0){
+
+                             result = tmp_result
+                             result_name = tokyoMarkerData[z]['name']
+                         }
+            }
+        }else if (val === "saitama") {
+            console.log("saitama")
+            for (var ss = 0; ss < saitamaMarkerData.length; ss++) {
+                markerLatLng = new google.maps.LatLng({lat: saitamaMarkerData[ss]['lat'], lng: saitamaMarkerData[ss]['lng']});
+                     console.log(tokyoMarkerData);
+                     var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                     var distance = Math.round(tmp_distance/1000)
+                     console.log(markerLatLng);
+                     tmp_result = distance
+
+                     // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                         if(  tmp_result < result  || ss == 0){
+
+                             result = tmp_result
+                             result_name = saitamaMarkerData[ss]['name']
+                         }
+            }       console.log(result)
+
+        }else if (val === "kanagawa") {
+            console.log("kanagawa")
+            for (var kk = 0; kk < kanagawaMarkerData.length; kk++) {
+                markerLatLng = new google.maps.LatLng({lat: kanagawaMarkerData[kk]['lat'], lng: kanagawaMarkerData[kk]['lng']});
+                     console.log(tokyoMarkerData);
+                     var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                     var distance = Math.round(tmp_distance/1000)
+                     console.log(markerLatLng);
+                     tmp_result = distance
+
+                     // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                         if(  tmp_result < result  || kk == 0){
+
+                             result = tmp_result
+                             result_name = kanagawaMarkerData[kk]['name']
+                         }
+            }
+        }          console.log(result)
+            if(markerLatLng != 0){
+                // 現在地から最寄りマーカーの距離を表示
+                $('#output').fadeIn();
+                $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+            }
+    }
+
+
 
     console.log("現在地は"+latlng);
     map.setCenter(latlng);
@@ -111,7 +181,6 @@ function getMyPlace() {
     newInfoWindow = new google.maps.InfoWindow({
     	content: '<div class="sample">現在地</div>'
     });
-    
     newMarker.addListener('mouseover', function(){
     	newInfoWindow.open(map,newMarker);
     });
@@ -135,36 +204,42 @@ function deleteMarkers(){
 }
 
 
-
+//セレクトボックス切り替え
 $(function() {
   //セレクトボックスが切り替わったら発動
   $('select').change(function() {
   	// console.log("test");
     //選択したvalue値を変数に格納
-    var val = $(this).val();
+    val = $(this).val();
     if(val === "tokyo"){
     	if (marker.length > 0) {
     		deleteMarkers();
     	}
-        var minValue = Math.min.apply(null, tokyoMarkerData)
-            console.log("最小値は"+minValue);
-    	for (var i = 0; i < tokyoMarkerData.length; i++) {
-	        markerLatLng = new google.maps.LatLng({lat: tokyoMarkerData[i]['lat'], lng: tokyoMarkerData[i]['lng']}); // 緯度経度のデータ作成
-            console.log("マーカーセレクト"+markerLatLng);
-            
-            // 現在地と東京マーカーの距離算出
-            var distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
-            $('#output').html("現在地と"+tokyoMarkerData[i]['name']+"の距離は"+ distance + "です");
 
-            // for (var d = 0; d < distance; d++) {
-            //      tmp_result = distance
-            //      if(  tmp_result < result  || tmp_result = 0){
-            //          result = tmp_result
-            //      }
-            // }
+    	for (var i = 0; i < tokyoMarkerData.length; i++) {
+
+
+	        markerLatLng = new google.maps.LatLng({lat: tokyoMarkerData[i]['lat'], lng: tokyoMarkerData[i]['lng']}); // 緯度経度のデータ作成
+            console.log("マーカーセレクト" + markerLatLng);
+
+            // 現在地と東京マーカーの距離算出
+            if(latlng != 0){
+                console.log(latlng);
+                var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                var distance = Math.round(tmp_distance/1000)
+
+                tmp_result = distance
+
+            // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                if(  tmp_result < result  || i == 0){
+                    result = tmp_result
+                    result_name = tokyoMarkerData[i]['name']
+                }
+                console.log(result)
+            }
+
 
             console.log("現在値と"+tokyoMarkerData[i]['name']+"の距離は"+ distance);
-	        
 
             marker[i] = new google.maps.Marker({ // マーカーの追加
 	         position: markerLatLng, // マーカーを立てる位置を指定
@@ -178,7 +253,11 @@ $(function() {
 	     console.log(marker[i]);
 	     markerEvent(i); // マーカーにクリックイベントを追加
 	    }
-
+        if(latlng != 0){
+            // 現在地から最寄りマーカーの距離を表示
+            $('#output').fadeIn();
+            $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+        }
 	// マーカーにクリックイベントを追加
 		function markerEvent(i) {
 		    marker[i].addListener('mouseover', function() { // マーカーに触れた時
@@ -198,7 +277,28 @@ $(function() {
 	         position: markerLatLng, // マーカーを立てる位置を指定
 	            map: map // マーカーを立てる地図を指定
 	        });
-	 
+
+            if(latlng != 0){
+                console.log(latlng);
+                var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                var distance = Math.round(tmp_distance/1000)
+
+                tmp_result = distance
+
+            // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                if(  tmp_result < result  || s == 0){
+                    result = tmp_result
+                    result_name = saitamaMarkerData[s]['name']
+                }
+                console.log(result)
+	        }
+
+            if(latlng != 0){
+            // 現在地から最寄りマーカーの距離を表示
+            $('#output').fadeIn();
+            $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+            }
+
 	        infoWindow[s] = new google.maps.InfoWindow({ // 吹き出しの追加
 	          content: '<div class="sample">' + saitamaMarkerData[s]['name'] + '</div>' // 吹き出しに表示する内容
 	        });
@@ -225,6 +325,26 @@ $(function() {
     	           map: map // マーカーを立てる地図を指定
 	            });
 
+                if(latlng != 0){
+                console.log(latlng);
+                var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                var distance = Math.round(tmp_distance/1000)
+
+                tmp_result = distance
+
+            // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                if(  tmp_result < result  || k == 0){
+                    result = tmp_result
+                    result_name = kanagawaMarkerData[k]['name']
+                }
+                console.log(result)
+            }
+            if(latlng != 0){
+            // 現在地から最寄りマーカーの距離を表示
+            $('#output').fadeIn();
+            $('#output').html("現在地から"+ result_name +"への距離は"+ result + "kmです。");
+            }
+
     	        infoWindow[k] = new google.maps.InfoWindow({ // 吹き出しの追加
     	           content: '<div class="sample">' + kanagawaMarkerData[k]['name'] + '</div>' // 吹き出しに表示する内容
     	        });
@@ -241,6 +361,7 @@ $(function() {
 		  	});
 		}
     }else if (val == "no") {
+        $('#output').fadeOut();
     	if (marker.length > 0) {
 	    		deleteMarkers();
     	}
