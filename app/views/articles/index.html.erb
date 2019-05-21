@@ -26,6 +26,7 @@
                   <tr>
                     <th>Title</th>
                     <th class="text-center">Video</th>
+                    <th>Contributor</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -37,6 +38,7 @@
                     <tr>
                       <td><%= article.title %></td>
                       <td><%= article.video %></td>
+                      <td><%= article.user.name %></td>
                       <td><%= link_to 'Show', article %></td>
 
                       <% if article.user == current_user %>

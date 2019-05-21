@@ -1,0 +1,14 @@
+    <hr>
+    <% if messages.present? %>
+      <% messages.each do |m| %>
+          <strong id="comment"><%= m.context %></strong>
+          <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
+          <hr>
+          <div id="likes_button_<%= m.id %>">
+             <% p "message:"%> <% p m %>
+             <%= render partial: 'likes/like', locals: { message: m, likes: @likes} %><br>
+          </div>
+      <% end %>
+    <% else %>
+        <h3 class="textcolor">メッセージはまだありません</h3>
+    <% end %>
