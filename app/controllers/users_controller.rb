@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 			@currentUserEntry.each do |cu|
 				@userEntry.each do |u|
 					if cu.room_id == u.room_id then
-						# 何がしたいのか？
+						# 何がしたいのか@isRoom = true？
 						@isRoom = true
 						@roomId = cu.room_id
 					end
