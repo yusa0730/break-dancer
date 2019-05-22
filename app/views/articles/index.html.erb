@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <header>
   <div id="contents">
       <h1 class="headline">
@@ -16,7 +14,9 @@
 </header>
 
 
+
 <div class="container">
+  <p id="notice"><%= notice %></p>
   <div class="row">
     <div class="all">
           <h1>Articles</h1>
@@ -24,9 +24,9 @@
             <table>
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th class="text-center">Video</th>
-                    <th>Contributor</th>
+                    <th class="textcolor">Title</th>
+                    <th class="text-center textcolor">Video</th>
+                    <th class="textcolor">Contributor</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -36,14 +36,14 @@
                 <tbody>
                   <% @articles.each do |article| %>
                     <tr>
-                      <td><%= article.title %></td>
-                      <td><%= article.video %></td>
-                      <td><%= article.user.name %></td>
-                      <td><%= link_to 'Show', article %></td>
+                      <td class="textcolor"><%= article.title %></td>
+                      <td class="textcolor"><%= article.video %></td>
+                      <td class="textcolor"><%= article.user.name %></td>
+                      <td><%= link_to 'Show', article ,:style => "color:white;" %></td>
 
                       <% if article.user == current_user %>
-                        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-                        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to 'Edit', edit_article_path(article) ,:style => "color:white;" %></td>
+                        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } ,:style => "color:white;"%></td>
                       <% end %>
 
 
@@ -54,7 +54,13 @@
           </div>
     </div>
   </div>
-  <%= link_to 'New Article', new_article_path %>
+  <%= link_to 'New Article', new_article_path ,:style => "color:white;"%>
+</div>
+
+
+
+<div class="videocase">
+    <video src="/assets/videos/videoplayback2.mp4" muted autoplay loop></video>
 </div>
 
 
