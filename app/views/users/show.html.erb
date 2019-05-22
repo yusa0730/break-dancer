@@ -41,7 +41,7 @@
 
         <br><%= link_to '', user_path(current_user), class: "edit_user_#{@user.id} btn btn-default btn-lg glyphicon glyphicon-wrench col-xs-1" %>
 
-       <% end %>
+      <% end %>
     <% else %>
       <% if @isRoom == true %>
         <a class="btn btn-default col-xs-1" href="/rooms/<%= @roomId %>">チャットへ</a>

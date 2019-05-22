@@ -4,7 +4,6 @@ class Message < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
-
   validates :context,length: { minimum: 1 }
   validates :context,length: { maximum: 100 }
 

@@ -399,7 +399,7 @@ h2 {
 
 #samv{
     width: 500px;
-    height: 50%; 
+    height: 50%;
     margin: auto;
     overflow: hidden;
 }
@@ -412,4 +412,22 @@ h2 {
 
 .col-xs-1{
   width: 9.333333%;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd){
+   background-color:transparent;
+}
+
+.profile-name{
+  color: white;
+}
+.box a{
+  color:white;
+}
+
+.topbody{
+  height :805px;
+}
+.textcolor a{
+  color:white;
 }

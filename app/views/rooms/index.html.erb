@@ -17,12 +17,12 @@
 
 <div class="dm_history">
       <h1>ダイレクトメッセージの履歴</h1>
-            <h3><% @anotherEntries.each do |another| %>
-					<%= link_to room_path(another.room.id) do%>
-						<p class="textcolor"><%= another.user.name %>さんとのDM<br></p>
-					<% end %>
-				<% end %>
-			</h3>
+        <h3><% @anotherEntries.each do |another| %>
+					     <%= link_to room_path(another.room.id) do%>
+						      <p class="textcolor"><%= another.user.name %>さんとのDM<br></p>
+					     <% end %>
+				    <% end %>
+			  </h3>
 </div>
 
 

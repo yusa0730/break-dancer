@@ -2,7 +2,7 @@
     <% if messages.present? %>
       <% messages.each do |m| %>
           <strong id="comment"><%= m.context %></strong>
-          <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
+          <small><a class="textcolor">by</a> <strong class="textcolor"><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
           <div id="likes_button_<%= m.id %>">
              <%= render partial: 'likes/like', locals: { message: m, likes: @likes} %><br>
           </div>

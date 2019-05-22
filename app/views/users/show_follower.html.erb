@@ -1,3 +1,22 @@
+<header>
+  <div id="contents">
+      <h1 class="headline">
+        <a href="/">Breakers</a>
+      </h1>
+
+      <nav>
+        <ul class="nav-list">
+          <li class="nav-list-item"><%= link_to "動画を投稿する", new_article_path %></li>
+          <li class="nav-list-item" data-turbolinks="false"><%= link_to "場所を探す", places_path %></li>
+          <li class="nav-list-item"><%= link_to "つながる", all_path %></li>
+        </ul>
+      </nav>
+  </div>
+</header>
+
+
+
+
 <div class="container">
   <div class="row">
     <div class="all">
@@ -6,9 +25,9 @@
             <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>image</th>
-                    <th class="text-center">name</th>
-                    <th class="text-center">email</th>
+                    <th class="textcolor">image</th>
+                    <th class="text-center textcolor">name</th>
+                    <th class="text-center textcolor">email</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -29,14 +48,14 @@
                          </div>
                       </td>
                       <td>
-                        <%= link_to "show", user_path(user.id) %>
+                        <%= link_to "show", user_path(user.id) ,:style => "color:white;" %>
                       </td>
                     </tr>
-                   <% end %>
+                  <% end %>
                 </tbody>
             </table>
           </div>
-     </div>
+    </div>
   </div>
 </div>
 

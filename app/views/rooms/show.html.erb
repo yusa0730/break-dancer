@@ -13,23 +13,23 @@
       </nav>
   </div>
 </header>
-  
+
 
 <div class="dmbox">
     <h1>ダイレクトメッセージ</h1>
     <h4 class="textcolor">参加者</h4>
 
     <% @entries.each do |e| %>
-      <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
+      <h5 class="box"><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
     <% end %>
     <!-- メッセージを送った時に非同期で行うid="cuurentcomment" -->
-  <div id="cuurentcomment">
-    <%= render partial: 'messages/message', locals: { messages: @messages} %>
-  </div>
+    <div id="cuurentcomment">
+      <%= render partial: 'messages/message', locals: { messages: @messages} %>
+    </div>
 
-  <%= render partial: 'messages/form', locals: { message: @message} %>
+    <%= render partial: 'messages/form', locals: { message: @message} %>
 
-  <p class="textcolor"><%= link_to "ユーザー一覧に戻る", all_path %></p>
+    <p class="textcolor"><%= link_to "ユーザー一覧に戻る", all_path %></p>
 
 </div>
 
