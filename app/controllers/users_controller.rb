@@ -32,7 +32,9 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		# @user = User.find(params[:id])
+	end
+
+	def edit
 	end
 	def update
 		@user = User.find(params[:id])
