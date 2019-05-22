@@ -21,9 +21,9 @@
             <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th class="text-left">image</th>
-                    <th class="text-center">name</th>
-                    <th class="text-center">email</th>
+                    <th class="text-left profile-name">image</th>
+                    <th class="text-center profile-name">name</th>
+                    <th class="text-center profile-name">email</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -44,7 +44,7 @@
                          </div>
                       </td>
                       <td>
-                        <%= link_to "show", user_path(user.id) %>
+                        <%= link_to "show", user_path(user.id) , :style => "color:white;" %>
                       </td>
                     </tr>
                    <% end %>
