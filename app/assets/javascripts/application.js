@@ -43,7 +43,6 @@ var tokyoMarkerData = [
         lat: 35.729288,
         lng: 139.710001
     }
-
 ];
 
 
@@ -53,7 +52,6 @@ var saitamaMarkerData = [
         lat: 35.859037,
         lng: 139.657145
     }
-
 ];
 
 var kanagawaMarkerData = [
@@ -62,7 +60,6 @@ var kanagawaMarkerData = [
         lat: 35.599905,
         lng: 139.610459
     }
-
 ];
 
 
@@ -80,7 +77,6 @@ function initMap(){
 
 // 現在地の取得
 function getMyPlace() {
-    console.log(val)
   var output = document.getElementById("result");
   if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
     output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
@@ -94,61 +90,45 @@ function getMyPlace() {
     latlng = new google.maps.LatLng( latitude , longitude ) ;
 
     if(markerLatLng != 0){
-        console.log(tokyoMarkerData);
-        // var val = $('select').val();
         if(val === "tokyo"){
-             console.log("tokyo")
             for (var z = 0; z < tokyoMarkerData.length; z++) {
                 markerLatLng = new google.maps.LatLng({lat: tokyoMarkerData[z]['lat'], lng: tokyoMarkerData[z]['lng']});
-                     console.log(tokyoMarkerData);
                      var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
                      var distance = Math.round(tmp_distance/1000)
-                     console.log(markerLatLng);
                      tmp_result = distance
 
                      // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
-                         if(  tmp_result < result  || z == 0){
-
-                             result = tmp_result
-                             result_name = tokyoMarkerData[z]['name']
-                         }
+                      if(  tmp_result < result  || z == 0){
+                          result = tmp_result
+                          result_name = tokyoMarkerData[z]['name']
+                      }
             }
         }else if (val === "saitama") {
-            console.log("saitama")
             for (var ss = 0; ss < saitamaMarkerData.length; ss++) {
                 markerLatLng = new google.maps.LatLng({lat: saitamaMarkerData[ss]['lat'], lng: saitamaMarkerData[ss]['lng']});
-                     console.log(tokyoMarkerData);
                      var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
                      var distance = Math.round(tmp_distance/1000)
-                     console.log(markerLatLng);
                      tmp_result = distance
-
                      // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
-                         if(  tmp_result < result  || ss == 0){
-
-                             result = tmp_result
-                             result_name = saitamaMarkerData[ss]['name']
-                         }
-            }       console.log(result)
+                     if(  tmp_result < result  || ss == 0){
+                          result = tmp_result
+                          result_name = saitamaMarkerData[ss]['name']
+                     }
+            }
 
         }else if (val === "kanagawa") {
-            console.log("kanagawa")
             for (var kk = 0; kk < kanagawaMarkerData.length; kk++) {
                 markerLatLng = new google.maps.LatLng({lat: kanagawaMarkerData[kk]['lat'], lng: kanagawaMarkerData[kk]['lng']});
-                     console.log(tokyoMarkerData);
                      var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
                      var distance = Math.round(tmp_distance/1000)
-                     console.log(markerLatLng);
                      tmp_result = distance
-
                      // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
-                         if(  tmp_result < result  || kk == 0){
-
-                             result = tmp_result
-                             result_name = kanagawaMarkerData[kk]['name']
-                         }
+                     if(  tmp_result < result  || kk == 0){
+                         result = tmp_result
+                         result_name = kanagawaMarkerData[kk]['name']
+                     }
             }
-        }          console.log(result)
+        }
             if(markerLatLng != 0){
                 // 現在地から最寄りマーカーの距離を表示
                 $('#output').fadeIn();
@@ -157,8 +137,6 @@ function getMyPlace() {
     }
 
 
-
-    console.log("現在地は"+latlng);
     map.setCenter(latlng);
     var template = [
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="40px" height="40px">',
@@ -182,11 +160,9 @@ function getMyPlace() {
     	content: '<div class="sample">現在地</div>'
     });
     newMarker.addListener('mouseover', function(){
-    	newInfoWindow.open(map,newMarker);
-    });
+    	newInfoWindow.open(map,newMarker);});
     newMarker.addListener('mouseout', function(){
-    	newInfoWindow.close()
-    });
+    	newInfoWindow.close(); });
   };
   function error() {
     //エラーの場合
@@ -220,11 +196,9 @@ $(function() {
 
 
 	        markerLatLng = new google.maps.LatLng({lat: tokyoMarkerData[i]['lat'], lng: tokyoMarkerData[i]['lng']}); // 緯度経度のデータ作成
-            console.log("マーカーセレクト" + markerLatLng);
 
             // 現在地と東京マーカーの距離算出
             if(latlng != 0){
-                console.log(latlng);
                 var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
                 var distance = Math.round(tmp_distance/1000)
 
@@ -235,86 +209,73 @@ $(function() {
                     result = tmp_result
                     result_name = tokyoMarkerData[i]['name']
                 }
-                console.log(result)
             }
 
-
-            console.log("現在値と"+tokyoMarkerData[i]['name']+"の距離は"+ distance);
-
             marker[i] = new google.maps.Marker({ // マーカーの追加
-	         position: markerLatLng, // マーカーを立てる位置を指定
-	            map: map // マーカーを立てる地図を指定
-	        });
-	        // MarkerArray.push(marker);
-	 
-	     infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-	         content: '<div class="sample">' + tokyoMarkerData[i]['name'] + '</div>' // 吹き出しに表示する内容
-	       });
-	     console.log(marker[i]);
-	     markerEvent(i); // マーカーにクリックイベントを追加
+  	         position: markerLatLng, // マーカーを立てる位置を指定
+  	            map: map // マーカーを立てる地図を指定
+	          });
+
+    	      infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+    	         content: '<div class="sample">' + tokyoMarkerData[i]['name'] + '</div>' // 吹き出しに表示する内容
+    	      });
+    	      markerEvent(i); // マーカーにクリックイベントを追加
 	    }
-        if(latlng != 0){
-            // 現在地から最寄りマーカーの距離を表示
-            $('#output').fadeIn();
-            $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
-        }
-	// マーカーにクリックイベントを追加
-		function markerEvent(i) {
-		    marker[i].addListener('mouseover', function() { // マーカーに触れた時
-		      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
-		  	});
-		    marker[i].addListener('mouseout', function() { // マーカーから離れた時
-		      infoWindow[i].close();
-		  	});
-		}
+
+      if(latlng != 0){
+          // 現在地から最寄りマーカーの距離を表示
+          $('#output').fadeIn();
+          $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
+      }
+	    // マーカーにクリックイベントを追加
+  		function markerEvent(i) {
+  		    marker[i].addListener('mouseover', function() { // マーカーに触れた時
+  		      infoWindow[i].open(map, marker[i]);});// 吹き出しの表示
+  		    marker[i].addListener('mouseout', function() { // マーカーから離れた時
+  		      infoWindow[i].close();});
+		  }
     }else if(val == "saitama"){
     	if (marker.length > 0) {
-    		deleteMarkers();
+    		 deleteMarkers();
     	}
     	for (var s = 0; s < saitamaMarkerData.length; s++) {
 	        markerLatLng = new google.maps.LatLng({lat: saitamaMarkerData[s]['lat'], lng: saitamaMarkerData[s]['lng']}); // 緯度経度のデータ作成
 	        marker[s] = new google.maps.Marker({ // マーカーの追加
-	         position: markerLatLng, // マーカーを立てる位置を指定
+	            position: markerLatLng, // マーカーを立てる位置を指定
 	            map: map // マーカーを立てる地図を指定
 	        });
 
-            if(latlng != 0){
-                console.log(latlng);
-                var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
-                var distance = Math.round(tmp_distance/1000)
-
-                tmp_result = distance
-
-            // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
-                if(  tmp_result < result  || s == 0){
+          if(latlng != 0){
+              var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+              var distance = Math.round(tmp_distance/1000)
+              tmp_result = distance
+              // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+              if(  tmp_result < result  || s == 0){
                     result = tmp_result
                     result_name = saitamaMarkerData[s]['name']
-                }
-                console.log(result)
+              }
 	        }
 
-            if(latlng != 0){
-            // 現在地から最寄りマーカーの距離を表示
-                $('#output').fadeIn();
-                $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
-            }
+          if(latlng != 0){
+              // 現在地から最寄りマーカーの距離を表示
+              $('#output').fadeIn();
+              $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
+          }
 
 	        infoWindow[s] = new google.maps.InfoWindow({ // 吹き出しの追加
 	            content: '<div class="sample">' + saitamaMarkerData[s]['name'] + '</div>' // 吹き出しに表示する内容
 	        });
-	 
 	        markerEvent(s); // マーカーにクリックイベントを追加
 	    }
 
 	    function markerEvent(s) {
 		    marker[s].addListener('mouseover', function() { // マーカーに触れた時
-		      infoWindow[s].open(map, marker[s]); // 吹き出しの表示
-		  	});
+		      infoWindow[s].open(map, marker[s]);}); // 吹き出しの表示
 		    marker[s].addListener('mouseout', function() { // マーカーから離れた時
-		      infoWindow[s].close();
-		  	});
-		}
-	}else if(val == "kanagawa"){
+		      infoWindow[s].close();});
+		  }
+
+	  }else if(val == "kanagawa"){
     		if (marker.length > 0) {
 	    		deleteMarkers();
     		}
@@ -325,43 +286,38 @@ $(function() {
     	           map: map // マーカーを立てる地図を指定
 	            });
 
-                if(latlng != 0){
-                console.log(latlng);
-                var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
-                var distance = Math.round(tmp_distance/1000)
+              if(latlng != 0){
+                  var tmp_distance = google.maps.geometry.spherical.computeDistanceBetween(markerLatLng, latlng);
+                  var distance = Math.round(tmp_distance/1000)
+                  tmp_result = distance
 
-                tmp_result = distance
-
-            // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
+                // 現在地と東京マーカーの最短距離算出。右のi==0は1回目distanceの時。
                 if(  tmp_result < result  || k == 0){
                     result = tmp_result
                     result_name = kanagawaMarkerData[k]['name']
                 }
-                console.log(result)
-            }
-            if(latlng != 0){
-            // 現在地から最寄りマーカーの距離を表示
-            $('#output').fadeIn();
-            $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
-            }
+              }
+              if(latlng != 0){
+                // 現在地から最寄りマーカーの距離を表示
+                $('#output').fadeIn();
+                $('#output').html("現在地から一番近いのは"+ result_name +"です。<br>"+"現在地から"+ result_name +"への距離は"+ result + "kmです。");
+              }
 
     	        infoWindow[k] = new google.maps.InfoWindow({ // 吹き出しの追加
     	           content: '<div class="sample">' + kanagawaMarkerData[k]['name'] + '</div>' // 吹き出しに表示する内容
     	        });
-	 
 	           markerEvent(k); // マーカーにクリックイベントを追加
 	        }
-        // マーカーに触れた時及び触れた後マーカーから離れた時の動きを出すメソッド
-	    function markerEvent(k) {
-		    marker[k].addListener('mouseover', function() { // マーカーに触れた時
-		      infoWindow[k].open(map, marker[k]); // 吹き出しの表示
-		  	});
-		    marker[k].addListener('mouseout', function() { // マーカーから離れた時
-		      infoWindow[k].close();
-		  	});
-		}
+          // マーカーに触れた時及び触れた後マーカーから離れた時の動きを出すメソッド
+	        function markerEvent(k) {
+		          marker[k].addListener('mouseover', function() { // マーカーに触れた時
+		          infoWindow[k].open(map, marker[k]); });// 吹き出しの表示
+		          marker[k].addListener('mouseout', function() { // マーカーから離れた時
+		          infoWindow[k].close();});
+		      }
     }else if (val == "no") {
         $('#output').fadeOut();
+        markerLatLng = 0
     	if (marker.length > 0) {
 	    		deleteMarkers();
     	}

@@ -10,6 +10,9 @@ class User < ApplicationRecord
          has_many :articles
          attachment :profile_image
 
+         validates :name,length: { minimum: 1 }
+         validates :name,length: { maximum: 10 }
+
          # フォローしている（能動的関係上でフォローする側[relationship.rbでのbelongs_to :follower, class_name: "User"と対]）
          has_many :active_relationships,class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
          # フォローをされる

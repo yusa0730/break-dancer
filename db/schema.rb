@@ -47,17 +47,6 @@ ActiveRecord::Schema.define(version: 2019_05_17_114840) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "places", force: :cascade do |t|
-    t.text "place_name"
-    t.text "address"
-    t.text "station"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.integer "prefecture", default: 0
-  end
-
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "following_id"
@@ -70,13 +59,6 @@ ActiveRecord::Schema.define(version: 2019_05_17_114840) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "upload_files", force: :cascade do |t|
-    t.string "name"
-    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
