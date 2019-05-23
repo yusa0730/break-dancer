@@ -26,23 +26,47 @@ var marker = [];
 var val;
 var infoWindow = [];
 var tokyoMarkerData = [
-	{
+	 {
         name: '新宿コズミックセンター',
-        lat: 35.705148, 
+        lat: 35.705148,
         lng: 139.708166
- }, {
-        name: '損保ジャパンビル(旧安田ビル)',
-        lat: 35.690586,
-        lng: 139.698028
- }, {
-        name: '立教大学ウィリアムズホール',
-        lat: 35.729537,
-        lng: 139.701921
- }, {
-        name: '池袋駅メトロポリタン',
-        lat: 35.729288,
-        lng: 139.710001
-    }
+   }, {
+          name: '損保ジャパンビル(旧安田ビル)',
+          lat: 35.690586,
+          lng: 139.698028
+   }, {
+          name: '立教大学ウィリアムズホール',
+          lat: 35.729537,
+          lng: 139.701921
+   }, {
+          name: '池袋駅メトロポリタン',
+          lat: 35.729288,
+          lng: 139.710001
+   }, {
+          name: '青山学院大学４号館',
+          lat: 35.660604,
+          lng: 139.710093
+   }, {
+          name: '中野ゼロ',
+          lat: 35.704530,
+          lng: 139.671754
+   }, {
+          name: 'デザインストア目白',
+          lat: 35.720598,
+          lng: 139.706751
+   }, {
+          name: 'デザインストア目白',
+          lat: 35.720598,
+          lng: 139.706751
+   }, {
+          name: '池袋サンシャイン前',
+          lat: 35.728403,
+          lng: 139.718411
+   }, {
+          name: '東京芸術劇場前',
+          lat: 35.729877,
+          lng: 139.708355
+   }
 ];
 
 
@@ -51,7 +75,15 @@ var saitamaMarkerData = [
         name: '浦和駅（浦和駅西口地下道）',
         lat: 35.859037,
         lng: 139.657145
-    }
+  }, {
+        name: '大宮ソニック',
+        lat: 35.905429,
+        lng: 139.619449
+  }, {
+        name: 'さいたま市浦和駒場体育館',
+        lat: 35.872477,
+        lng: 139.662192
+  }
 ];
 
 var kanagawaMarkerData = [
@@ -59,7 +91,15 @@ var kanagawaMarkerData = [
         name: '溝の口駅',
         lat: 35.599905,
         lng: 139.610459
-    }
+  }, {
+        name: '新百合ヶ丘　OPA一階',
+        lat: 35.603833,
+        lng: 139.507770
+  }, {
+        name: 'ルミネ横浜１階外',
+        lat: 35.465401,
+        lng: 139.623105
+  }
 ];
 
 
@@ -336,22 +376,6 @@ $(function(){
 	});
 });
 
-// function standAreaMarker () {
-//     if (marker.length > 0) {
-//         deleteMarkers();
-//     }
-//     for (var k = 0; k < kanagawaMarkerData.length; k++) {
-//         markerLatLng = new google.maps.LatLng({lat: kanagawaMarkerData[k]['lat'], lng: kanagawaMarkerData[k]['lng']}); // 緯度経度のデータ作成
-//         marker[k] = new google.maps.Marker({ // マーカーの追加
-//         position: markerLatLng, // マーカーを立てる位置を指定
-//         map: map // マーカーを立てる地図を指定
-//     });
-
-//     infoWindow[k] = new google.maps.InfoWindow({ // 吹き出しの追加
-//        content: '<div class="sample">' + kanagawaMarkerData[k]['name'] + '</div>' // 吹き出しに表示する内容
-//     });
-
-// }
 
 
 
