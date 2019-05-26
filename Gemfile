@@ -73,6 +73,9 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave-video'
-gem 'json'
-gem 'mysql2'
-gem 'listen', '>= 3.0.5', '< 3.2'
+
+group :producion do
+  gem 'json'
+  gem 'mysql2'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+end
